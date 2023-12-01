@@ -13,12 +13,14 @@ const MovieDetails = () => {
 
     const { cast, category, desc, imageUrl, releaseDate, trailerUrl, name } = movie
 
-    console.log(movie)
+     console.log(movie)
+
+    
 
     const { id } = useParams()
 
-    const query = `*[_type=="movies" && _id=="${id}"]{_id, name, 
-        "imageUrl": poster.asset->url, cast, category->{name}, desc, releaseDate, trailerUrl }`
+    const query = `*[_type=="movies" && _id=="${id}"] {_id,Name,
+        "imageUrl": poster.asset->url,cast,category->{name},desc,releseDate,trailerUrl}`
 
     const getMovie = async () => {
         setLoading(true)

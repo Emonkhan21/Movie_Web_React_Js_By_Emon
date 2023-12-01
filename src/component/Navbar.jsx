@@ -14,7 +14,7 @@ const Navbar = () => {
                             <NavLink to={"/movies"} className={"mx-4 text-white p-3 hover:bg-slate-400 rounded-md transition-all duration-150"}>Movies</NavLink>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl text-white">EmPire</a>
+                    <a className="btn btn-ghost normal-case text-xl text-white">EmpiRe</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-4">

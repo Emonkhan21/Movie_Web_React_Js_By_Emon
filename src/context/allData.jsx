@@ -8,7 +8,7 @@ export function MovieDataProvider({ children }) {
     const [loading, setLoading] = useState()
     const getAllMovies = async () => {
         setLoading(true)
-        const movies = await client.fetch('*[_type=="movies"]{_id, cast, name, "imageUrl": poster.asset->url}')
+        const movies = await client.fetch('*[_type=="movies"]{_id, cast, Name, "imageUrl": poster.asset->url}')
         setLoading(false)
         return setMovies(movies)
     }
@@ -20,13 +20,42 @@ export function MovieDataProvider({ children }) {
 
     }
 
+
+
+// UserSearch value
+
+const getUserSearchData=(e)=>{
+
+const userSearchValue = e.target.value
+getUserMovie(userSearchValue)
+
+}
+
+// Get movie by user search
+
+const getUserMovie= async (userData)=>{
+    const query= ` *[_type=="movies" && (Name match "${userData}*")] {_id,Name,
+        "imageUrl":poster.assset->url,cast,category->{name},desc,releseDate,trailerUrl}`
+
+     
+
+const searchMovieResult=await client.fetch(query)
+
+// setMovies(searchMovieResult)
+console.log(searchMovieResult)
+
+}
+
+
+
+
     useEffect(() => {
         getAllMovies()
         getAllCategory()
 
     }, [])
 
-    return <MovieContext.Provider value={{ movies, category, loading }}>
+    return <MovieContext.Provider value={{ movies, category, loading,getUserSearchData }}>
         {children}
     </MovieContext.Provider>
 }

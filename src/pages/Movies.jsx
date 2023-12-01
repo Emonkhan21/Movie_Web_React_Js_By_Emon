@@ -4,15 +4,15 @@ import MovieCard from "../component/MovieCard"
 import { useMovieContext } from "../context/allData"
 
 const Movies = () => {
-    const { movies, loading, category } = useMovieContext()
+    const { movies, loading, category,getUserSearchData } = useMovieContext()
     console.log(movies)
 
     return (
         <Layout title={"Movies"}>
             <section className="flex justify-center my-8 gap-3">
-                <input type="search" placeholder="Search Movies" className="input input-bordered w-[50%] " />
+                <input onChange={getUserSearchData} type="search" placeholder="Search Movies" className="input input-bordered w-[50%] " />
                 <select className="select select-bordered ">
-                    <option disabled selected>Choose Category</option>
+                    <option disabled defaultValue={"selected"}>Choose Category</option>
                     {
                         category.map(cat => <option key={cat._id}>{cat.name}</option>)
                     }
